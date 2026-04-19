@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────
+   Light Mode (default)
+   ────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #FAFAF9;
+  --text-primary: #1C1917;
+  --text-body: #44403C;
+  --text-muted: #A8A29E;
+  --accent: #7C9CB5;
+  --accent-hover: #5B7D99;
+  --accent-bg: #EEF2F6;
+  --border: #E7E5E4;
+  --highlight-bg: #F5F0EB;
+  --highlight-border: #7C9CB5;
+
+  /* Tag colors */
+  --tag-major-bg: #EEF2F6;
+  --tag-major-text: #4A6D8A;
+  --tag-enhancement-bg: #F0EEF6;
+  --tag-enhancement-text: #6A5A8A;
+  --tag-design-system-bg: #EEF6F0;
+  --tag-design-system-text: #4A8A6D;
+  --tag-career-bg: #F6F2EE;
+  --tag-career-text: #8A6D4A;
+  --tag-achievement-bg: #F6EEEE;
+  --tag-achievement-text: #8A4A4A;
+  --tag-community-bg: #EEF6F6;
+  --tag-community-text: #4A7A7A;
 }
 
+/* ──────────────────────────────────────────────
+   Dark Mode
+   ────────────────────────────────────────────── */
+.dark {
+  --bg: #1C1917;
+  --text-primary: #FAFAF9;
+  --text-body: #D6D3D1;
+  --text-muted: #78716C;
+  --accent: #93B1C9;
+  --accent-hover: #B5CCDB;
+  --accent-bg: #292524;
+  --border: #292524;
+  --highlight-bg: #292524;
+  --highlight-border: #93B1C9;
+
+  /* Tag colors (dark) */
+  --tag-major-bg: #1E2A35;
+  --tag-major-text: #93B1C9;
+  --tag-enhancement-bg: #25202E;
+  --tag-enhancement-text: #A893C9;
+  --tag-design-system-bg: #1E2E25;
+  --tag-design-system-text: #93C9A8;
+  --tag-career-bg: #2E2820;
+  --tag-career-text: #C9A893;
+  --tag-achievement-bg: #2E2020;
+  --tag-achievement-text: #C99393;
+  --tag-community-bg: #202E2E;
+  --tag-community-text: #93C9C9;
+}
+
+/* ──────────────────────────────────────────────
+   Tailwind theme tokens
+   ────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-bg: var(--bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-bg: var(--accent-bg);
+  --color-border: var(--border);
+  --color-highlight-bg: var(--highlight-bg);
+  --color-highlight-border: var(--highlight-border);
+
+  --font-serif: var(--font-lora);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ──────────────────────────────────────────────
+   Base styles
+   ────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  color: var(--text-body);
+  font-family: var(--font-serif);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
+
+/* Text selection */
+::selection {
+  background-color: var(--accent-bg);
+  color: var(--text-primary);
+}
+
+/* Small-caps utility */
+.small-caps {
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+/* Welcome screen ring pulse */
+@keyframes pulse-ring {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Nav dot separator */
+.nav-dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background-color: var(--text-muted);
+  vertical-align: middle;
+}
+
