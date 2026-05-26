@@ -1,11 +1,5 @@
-import WelcomeScreen from "@/components/WelcomeScreen";
-import LayoutManager from "@/components/layouts/LayoutManager";
+import GlimmLayout from "@/components/layouts/GlimmLayout";
 
 export default function Home() {
-  return (
-    <>
-      <WelcomeScreen />
-      <LayoutManager />
-    </>
-  );
+  return <GlimmLayout />;
 }
