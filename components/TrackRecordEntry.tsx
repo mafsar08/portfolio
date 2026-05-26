@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FileText, ExternalLink, Eye } from "lucide-react";
 import ImageLightbox from "./ImageLightbox";
 import type { TrackRecordEntry as EntryType } from "@/data/track-record";
@@ -30,6 +31,9 @@ export default function TrackRecordEntryRow({
 }) {
   const isHighlighted = entry.highlighted;
   const hasImages = entry.images && entry.images.length > 0;
+  const caseStudyRoute = entry.links?.caseStudy?.startsWith("/")
+    ? entry.links.caseStudy
+    : null;
 
   return (
     <div
@@ -49,14 +53,14 @@ export default function TrackRecordEntryRow({
                 {entry.company}
               </span>
             )}
-            <span className="font-serif text-text-primary text-sm font-medium">
+            <span className="font-serif text-text-primary text-base font-medium">
               {entry.title}
             </span>
           </div>
 
           {/* Description */}
           {entry.description && (
-            <p className="font-serif text-text-body text-xs leading-relaxed mt-1 max-w-[480px]">
+            <p className="font-serif text-text-body text-sm leading-relaxed mt-1">
               {entry.description}
             </p>
           )}
@@ -66,15 +70,26 @@ export default function TrackRecordEntryRow({
             <ImageLightbox images={entry.images!} alt={entry.title} />
           )}
 
-          {/* View button — shown when images exist */}
-          {hasImages && onView && (
-            <button
-              onClick={() => onView(entry)}
+          {/* View — links to case study route if present, otherwise opens modal */}
+          {caseStudyRoute ? (
+            <Link
+              href={caseStudyRoute}
               className="inline-flex items-center gap-1.5 font-mono text-xs text-accent hover:text-accent-hover transition-colors mt-3"
             >
               <Eye size={12} />
-              View
-            </button>
+              Read case study
+            </Link>
+          ) : (
+            hasImages &&
+            onView && (
+              <button
+                onClick={() => onView(entry)}
+                className="inline-flex items-center gap-1.5 font-mono text-xs text-accent hover:text-accent-hover transition-colors mt-3"
+              >
+                <Eye size={12} />
+                View
+              </button>
+            )
           )}
 
           {/* Links — shown directly on card only when NO images */}
@@ -87,10 +102,10 @@ export default function TrackRecordEntryRow({
                     href={entry.links.docs}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-accent-hover transition-colors"
+                    className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.05em] text-accent border border-accent rounded-md px-3 py-1.5 hover:bg-accent hover:text-white transition-colors duration-200"
                   >
                     <FileText size={12} />
-                    Docs
+                    Product documentation
                   </a>
                 )}
                 {entry.links.caseStudy && (

@@ -25,7 +25,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="max-w-[720px] mx-auto px-6 pt-16 pb-16"
+      className="max-w-[880px] mx-auto px-6 pt-16 pb-16"
     >
       {/* Section label */}
       <FadeUp>
@@ -35,7 +35,7 @@ export default function Contact() {
       </FadeUp>
 
       <FadeUp delay={0.08}>
-        <p className="font-serif text-text-body text-base leading-relaxed mb-8">
+        <p className="font-serif text-text-body text-lg leading-relaxed mb-8">
           Have an exciting opportunity or just want to say hi?
         </p>
       </FadeUp>
@@ -44,7 +44,7 @@ export default function Contact() {
         <div className="flex flex-col gap-3">
           <a
             href="mailto:mohammedafsar.des@gmail.com"
-            className="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+            className="inline-flex items-center gap-2 font-mono text-base text-accent hover:text-accent-hover transition-colors duration-200"
           >
             <Mail size={16} />
             mohammedafsar.des@gmail.com
@@ -53,7 +53,7 @@ export default function Contact() {
             href="https://linkedin.com/in/mohammedafsar08"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+            className="inline-flex items-center gap-2 font-mono text-base text-accent hover:text-accent-hover transition-colors duration-200"
           >
             <LinkedinIcon size={16} />
             linkedin.com/in/mohammedafsar08
@@ -61,7 +61,7 @@ export default function Contact() {
           <a
             href="/resume.pdf"
             download
-            className="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-accent-hover transition-colors duration-200"
+            className="inline-flex items-center gap-2 font-mono text-base text-accent hover:text-accent-hover transition-colors duration-200"
           >
             <Download size={16} />
             Download Resume

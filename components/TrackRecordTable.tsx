@@ -53,11 +53,11 @@ export default function TrackRecordTable({ entries, onView }: Props) {
           >
             {/* Feature name + description (stacked) */}
             <div className="min-w-0">
-              <span className="font-serif text-text-primary text-sm font-medium leading-snug block">
+              <span className="font-serif text-text-primary text-base font-medium leading-snug block">
                 {entry.title}
               </span>
               {entry.description && (
-                <span className="font-serif text-text-body text-xs leading-relaxed mt-0.5 block line-clamp-1">
+                <span className="font-serif text-text-body text-sm leading-relaxed mt-0.5 block line-clamp-1">
                   {entry.description}
                 </span>
               )}

@@ -179,10 +179,10 @@ export default function FilePreviewModal({
               href={entry.links.docs}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-accent-hover transition-colors"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.05em] text-accent border border-accent rounded-md px-3 py-1.5 hover:bg-accent hover:text-white transition-colors duration-200"
             >
               <FileText size={12} />
-              Docs
+              Product documentation
             </a>
           )}
           {entry.links.caseStudy && (
@@ -316,7 +316,7 @@ export default function FilePreviewModal({
       onClick={onClose}
     >
       <div
-        className="relative max-w-3xl w-full bg-bg border border-border rounded-lg shadow-xl max-h-[90vh] flex flex-col"
+        className="relative max-w-5xl w-full bg-bg border border-border rounded-lg shadow-xl max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button (always top-right) */}

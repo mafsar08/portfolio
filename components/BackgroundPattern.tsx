@@ -1,25 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 
-type Pattern = "dots" | "grid" | "grain" | "cross" | "none";
-
-const patterns: { key: Pattern; label: string }[] = [
-  { key: "dots", label: "Dots" },
-  { key: "grid", label: "Grid" },
-  { key: "grain", label: "Grain" },
-  { key: "cross", label: "Cross" },
-  { key: "none", label: "None" },
-];
+export type Pattern =
+  | "none"
+  | "dots"
+  | "grid"
+  | "grain"
+  | "cross"
+  | "aurora"
+  | "dawn"
+  | "mesh"
+  | "spotlight"
+  | "conic"
+  | "vignette";
 
 const crossMaskSvg = `url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='24' height='24' fill='black'/%3E%3Crect x='11.5' y='8' width='1' height='8' fill='white'/%3E%3Crect x='8' y='11.5' width='8' height='1' fill='white'/%3E%3C/svg%3E")`;
 
-export default function BackgroundPattern() {
-  const [pattern, setPattern] = useState<Pattern>("dots");
+export default function BackgroundPattern({ pattern }: { pattern: Pattern }) {
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  // Mouse tracking for Spotlight gradient
+  useEffect(() => {
+    if (pattern !== "spotlight") return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (spotlightRef.current) {
+        spotlightRef.current.style.setProperty("--mx", `${e.clientX}px`);
+        spotlightRef.current.style.setProperty("--my", `${e.clientY}px`);
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => document.removeEventListener("mousemove", handleMouseMove);
+  }, [pattern]);
 
   return (
     <>
-      {/* Dot grid */}
+      {/* ── Patterns ── */}
       {pattern === "dots" && (
         <div
           className="fixed inset-0 pointer-events-none -z-10"
@@ -32,7 +50,6 @@ export default function BackgroundPattern() {
         />
       )}
 
-      {/* Fine grid lines */}
       {pattern === "grid" && (
         <div
           className="fixed inset-0 pointer-events-none -z-10"
@@ -45,7 +62,6 @@ export default function BackgroundPattern() {
         />
       )}
 
-      {/* Cross / Plus marks — uses mask so color follows theme */}
       {pattern === "cross" && (
         <div
           className="fixed inset-0 pointer-events-none -z-10"
@@ -64,7 +80,6 @@ export default function BackgroundPattern() {
         />
       )}
 
-      {/* Grain / Film noise */}
       {pattern === "grain" && (
         <div
           className="fixed inset-0 pointer-events-none -z-10"
@@ -89,25 +104,35 @@ export default function BackgroundPattern() {
         </div>
       )}
 
-      {/* Floating switcher (temporary — for preview) */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-bg border border-border rounded-lg px-3 py-2 shadow-lg">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted mr-1">
-          BG:
-        </span>
-        {patterns.map(({ key, label }) => (
-          <button
-            key={key}
-            onClick={() => setPattern(key)}
-            className={`font-mono text-[11px] px-2.5 py-1 rounded transition-colors ${
-              pattern === key
-                ? "bg-accent text-white"
-                : "bg-border text-text-muted hover:text-text-primary"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      {/* ── Gradients ── */}
+      {pattern === "aurora" && (
+        <div className="fixed inset-0 pointer-events-none -z-10 gradient-aurora overflow-hidden" />
+      )}
+
+      {pattern === "dawn" && (
+        <div className="fixed inset-0 pointer-events-none -z-10 gradient-dawn" />
+      )}
+
+      {pattern === "mesh" && (
+        <div className="fixed inset-0 pointer-events-none -z-10 gradient-mesh overflow-hidden" />
+      )}
+
+      {pattern === "spotlight" && (
+        <div
+          ref={spotlightRef}
+          className="fixed inset-0 pointer-events-none -z-10 gradient-spotlight"
+        />
+      )}
+
+      {pattern === "conic" && (
+        <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+          <div className="absolute inset-0 gradient-conic" />
+        </div>
+      )}
+
+      {pattern === "vignette" && (
+        <div className="fixed inset-0 pointer-events-none -z-10 gradient-vignette" />
+      )}
     </>
   );
 }

@@ -69,14 +69,14 @@ export default function TrackRecord() {
   return (
     <section
       id="track-record"
-      className="max-w-[720px] mx-auto px-6 pt-16 pb-16 border-b border-border"
+      className="max-w-[880px] mx-auto px-6 pt-16 pb-16 border-b border-border"
     >
       {/* Section label */}
       <FadeUp>
         <h2 className="font-mono text-xs uppercase tracking-[0.05em] text-text-body mb-2">
           Track Record
         </h2>
-        <p className="font-serif text-sm text-text-body mb-8">
+        <p className="font-serif text-base text-text-body mb-8">
           30+ features shipped across Kissflow and Techfully, serving 10,000+
           customers in 150+ countries. Here&rsquo;s everything I&rsquo;ve
           designed, built, and shipped.

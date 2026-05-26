@@ -1,8 +1,16 @@
 import FadeUp from "./FadeUp";
+import RotatingHeadline from "./RotatingHeadline";
+
+const headlinePhrases = [
+  "ships end-to-end",
+  "codes alongside engineers",
+  "partners with AI",
+  "builds the systems behind the screens",
+];
 
 export default function Hero() {
   return (
-    <section className="max-w-[720px] mx-auto px-6 pt-24 pb-16 border-b border-border">
+    <section className="max-w-[880px] mx-auto px-6 pt-24 pb-16 border-b border-border">
       {/* Placeholder photo */}
       <FadeUp>
         <div className="w-20 h-20 rounded-full bg-accent-bg border border-border mb-6 flex items-center justify-center">
@@ -12,7 +20,7 @@ export default function Hero() {
 
       {/* Name */}
       <FadeUp delay={0.08}>
-        <h1 className="font-serif text-text-primary text-3xl font-normal leading-tight mb-2">
+        <h1 className="font-serif text-text-primary text-4xl font-normal leading-tight mb-2">
           Mohammed Afsar
         </h1>
       </FadeUp>
@@ -26,14 +34,15 @@ export default function Hero() {
 
       {/* Headline */}
       <FadeUp delay={0.24}>
-        <h2 className="font-serif text-text-primary text-xl font-medium leading-snug mb-4 max-w-[560px]">
-          I&rsquo;m Afsar, a designer who ships end-to-end.
+        <h2 className="font-serif text-text-primary text-2xl font-medium leading-snug mb-4">
+          I&rsquo;m Afsar, a designer who{" "}
+          <RotatingHeadline phrases={headlinePhrases} />
         </h2>
       </FadeUp>
 
       {/* Intro */}
       <FadeUp delay={0.32}>
-        <div className="font-serif text-text-body text-base leading-relaxed max-w-[560px] mb-6 space-y-3">
+        <div className="font-serif text-text-body text-lg leading-relaxed mb-6 space-y-3">
           <p>
             From research to production, I design products people actually
             use &mdash; across B2B SaaS, low-code platforms, and EdTech. I

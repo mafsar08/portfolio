@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Eye } from "lucide-react";
 import type { TrackRecordEntry } from "@/data/track-record";
 
@@ -26,6 +27,9 @@ type Props = {
 
 export default function BentoCard({ entry, onView }: Props) {
   const hasImages = entry.images && entry.images.length > 0;
+  const caseStudyRoute = entry.links?.caseStudy?.startsWith("/")
+    ? entry.links.caseStudy
+    : null;
 
   return (
     <div className="border border-border rounded-lg overflow-hidden hover:border-accent/40 transition-colors duration-200 bg-bg relative">
@@ -52,13 +56,13 @@ export default function BentoCard({ entry, onView }: Props) {
         )}
 
         {/* Title */}
-        <h3 className="font-serif text-text-primary text-sm font-medium mt-1 leading-snug">
+        <h3 className="font-serif text-text-primary text-base font-medium mt-1 leading-snug">
           {entry.title}
         </h3>
 
         {/* Description */}
         {entry.description && (
-          <p className="font-serif text-text-body text-xs leading-relaxed mt-1 line-clamp-2">
+          <p className="font-serif text-text-body text-sm leading-relaxed mt-1 line-clamp-2">
             {entry.description}
           </p>
         )}
@@ -76,14 +80,25 @@ export default function BentoCard({ entry, onView }: Props) {
             </span>
           </div>
 
-          {hasImages && onView && (
-            <button
-              onClick={() => onView(entry)}
+          {caseStudyRoute ? (
+            <Link
+              href={caseStudyRoute}
               className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-accent-hover transition-colors"
             >
               <Eye size={12} />
-              View
-            </button>
+              Read case study
+            </Link>
+          ) : (
+            hasImages &&
+            onView && (
+              <button
+                onClick={() => onView(entry)}
+                className="inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-accent-hover transition-colors"
+              >
+                <Eye size={12} />
+                View
+              </button>
+            )
           )}
         </div>
       </div>

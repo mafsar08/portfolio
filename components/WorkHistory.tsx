@@ -23,7 +23,7 @@ export default function WorkHistory() {
   return (
     <section
       id="work-history"
-      className="max-w-[720px] mx-auto px-6 pt-16 pb-16 border-b border-border"
+      className="max-w-[880px] mx-auto px-6 pt-16 pb-16 border-b border-border"
     >
       {/* Section label */}
       <FadeUp>
@@ -54,10 +54,10 @@ export default function WorkHistory() {
               {/* Content */}
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                 <div>
-                  <h3 className="font-serif text-text-primary text-lg font-semibold">
+                  <h3 className="font-serif text-text-primary text-xl font-semibold">
                     {job.company}
                   </h3>
-                  <p className="font-serif text-text-body text-base">
+                  <p className="font-serif text-text-body text-lg">
                     {job.role}
                   </p>
                 </div>
@@ -66,7 +66,7 @@ export default function WorkHistory() {
                 </span>
               </div>
 
-              <p className="font-serif text-text-body text-sm leading-relaxed max-w-[520px]">
+              <p className="font-serif text-text-body text-base leading-relaxed">
                 {job.description}
               </p>
             </div>
