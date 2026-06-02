@@ -1,239 +1,366 @@
-# Portfolio Project — Session Summary
+# Portfolio — Thread Context Summary
 
-## Owner
-**Mohammed Afsar** — Self-taught Senior Product Designer, ~5 years experience, based in Chennai, India. Currently at Kissflow (May 2022–Present), previously at Techfully (Mar 2021–Apr 2022). Mechanical Engineering graduate turned designer. Founding member of SAAS Design community (Chennai). Won Kissflow AI Hackathon (Jul 2025).
-
----
-
-## Project Goal
-Build a personal portfolio to showcase Afsar's journey from self-taught to senior product designer, highlight work across Kissflow and Techfully, and present a comprehensive track record of features/milestones. The site should appeal to **recruiters and hiring managers**.
+**Last updated:** 2026-05-27
+**Owner:** Mohammed Afsar (@mafsar08 on GitHub)
+**Repo:** github.com/mafsar08/portfolio
+**Live URL:** not yet deployed (planned: Vercel)
 
 ---
 
-## Design Decisions (from ideation)
+## 1. Owner & Project Goal
 
-### Why Code Over No-Code
-- Full creative control over every pixel
-- Zero recurring hosting cost (Vercel free tier + ~$10/yr domain)
-- Shows cross-disciplinary skill (design + code)
-- No platform lock-in
-- Claude Code handles the build; Afsar focuses on design decisions
+**Mohammed Afsar** — Self-taught Senior Product Designer (~5 years), based in Chennai, India. Currently at **Kissflow** (May 2022 → Present), previously at **Techfully** (Mar 2021 → Apr 2022). Mechanical Engineering grad turned designer. Founding member of SAAS Design community (Chennai).
 
-### Reference Portfolios Analyzed
-7 portfolios were analyzed in detail to inform design choices:
+**Portfolio targets:** recruiters and hiring managers at B2B SaaS companies in India (Freshworks, Zoho, Chargebee, Razorpay, etc.).
 
-| Portfolio | What we took |
+---
+
+## 2. Tech Stack
+
+| Layer | Choice |
 |---|---|
-| **hvpandya.com** | **PRIMARY UI reference** — serif editorial typography (Tiempos), narrow content column (41-47rem), muted warm palette, monospace labels/metadata, small-caps nav, sharp corners, Japanese-inspired color naming, literary/editorial feel |
-| **yannglt.com** | **PRIMARY content reference** — track record section (table-like list of all professional achievements), multi-faceted content strategy, "Stuff / Type / Date" column structure |
-| **yannglt.com/track-record** | Chronological log grouped by year, 8 entry types, featured records highlighted at top, searchable, ~180 entries spanning career |
-| **brianlovin.com** | "Incrementally correct website" philosophy, dark mode with system detection + toggle + localStorage, typography-driven design |
-| **kaushikmurali.com** | Metrics-first case study presentation (revenue numbers, user counts upfront), three tiers of work showcase |
-| **aineshchhetri.com** | Stats strip pattern, metrics directly on homepage project cards |
-| **divyanshhp.work** | NDA handling pattern ("open for discussion in interviews"), testimonial section, bracket notation nav |
-| **batzorig.co** | Bento media grids per project, narrow text column (560px) + wider media, fade-up entrance animations, frosted glass header |
+| Framework | Next.js 16.2.3 (App Router, Turbopack) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 (`@theme inline`) |
+| Primary font | **Inter** (via `next/font/google`, scoped to `.glimm-layout`) |
+| Secondary fonts | Lora + Geist Mono (loaded for `/case-studies` routes) |
+| Theme | `next-themes` (light default; dark mode toggle kept for future use) |
+| Animations | `framer-motion` (mostly unused after cleanup) |
+| Icons | `lucide-react` |
+| Hosting | Vercel (planned, not yet deployed) |
+| Domain | Undecided |
 
-### Final Design Direction
-- **Visual style:** hvpandya.com — serif editorial, narrow column, muted palette, monospace metadata
-- **Content strategy:** yannglt.com — track record log, narrative about page
-- **Layout:** Single page with all sections (no separate pages)
-- **Light mode default, dark mode via toggle**
-- **Simple, lightweight interactions only** — subtle fade-ups, hover states
-- **No component library** — plain HTML elements + Tailwind CSS
-- **No CMS** — content lives in code as data files (may add CMS later for blog)
-- **No blog for now** — architecture ready to add one later with MDX
+**Notable:** AGENTS.md in repo root reminds future contributors that this Next.js version has breaking changes — check `node_modules/next/dist/docs/` before writing new code.
 
 ---
 
-## Site Structure
+## 3. Design Journey (Chronological)
+
+### Phase 1 — Editorial start (early thread)
+Lora (serif) + Geist Mono (mono), warm off-white + steel-blue accent, narrow-column hvpandya/yannglt inspired layout. Built: Header, Hero, WorkHistory, TrackRecord (16 entries), About, Contact, Footer, plus FilePreviewModal with image carousel.
+
+### Phase 2 — Multi-layout exploration
+Added 5 layout variants behind a runtime switcher (Editorial, Workspace, Cinematic, Index, Split). Added BG pattern picker (Dots, Grid, Grain, Cross) + gradient picker (Aurora, Dawn, Mesh, Spotlight, Conic, Vignette). Multilingual welcome screen (Tamil → Hindi → Arabic → Spanish → English). Achievements carousel with progress-fill dots. Rotating cross-fade headline. AI Chatbot case study at `/case-studies/ai-chatbot` with editorial structure (problem layers, key decisions, pull quotes, timeline).
+
+### Phase 3 — Track Record CSV ingestion
+User provided 17 real Kissflow features via CSV. WebFetched help docs to generate `what / how / impact` for each. Replaced placeholder Kissflow entries with real ones.
+
+### Phase 4 — Glimm focus (current direction)
+Analyzed glimm.dev (https://glimm.dev/#glimm) as primary reference. Created GlimmLayout: pure monochrome (`#F8F8F8` bg / `#1A1A1A` text / `#7A7A7A` muted / `#E5E5E5` borders), sticky left sidebar with active-section indicator, horizontal achievements scroll, rounded thumbnail cards. **Verified glimm.dev uses Inter** (not system fonts).
+
+### Phase 5 — Cleanup commit (commit `796ae34`)
+Deleted multi-layout system, BG patterns/gradients, welcome screen, modals, all old section components. Only Glimm remains. **3,500 net line deletion.**
+
+### Phase 6 — Glimm iteration (ongoing)
+- Centered main content (was left-aligned)
+- Flattened all cards (removed border / bg / rounded-xl chrome)
+- Image-as-header pattern for work + achievements
+- Removed achievement horizontal scroll → flat vertical stack
+- Removed rotating headline → static "I'm Afsar, a designer who builds end-to-end."
+- Added 112×112 portrait placeholder above name
+- Removed "kissflow · major feature" meta subtext from work + expanded track record rows
+
+---
+
+## 4. Current State of the Codebase
+
+### Files in the project (as of latest commit)
 
 ```
-HEADER — sticky, backdrop-blur, "Afsar" (serif small-caps) left, nav links (mono uppercase, dot-separated) right, dark/light toggle
-│
-├── HERO — placeholder photo, name, "Senior Product Designer" label, recruiter-optimized intro copy, Chennai + email
-├── WORK HISTORY — vertical timeline with dot markers (Kissflow current → Techfully past), role + dates + description
-├── TRACK RECORD — highlighted entries visible by default, "Show all records" expands full list grouped by year
-├── ABOUT — 3 short paragraphs (self-taught designer, current role at Kissflow, SAAS Design community)
-├── CONTACT — email + LinkedIn with icons
-│
-FOOTER — "© 2026 Mohammed Afsar · Designed & built by me"
+app/
+├── case-studies/ai-chatbot/page.tsx    ← will be moved to /work/ai-chatbot
+├── globals.css                          ← :root color tokens + .glimm-layout font scoping
+├── layout.tsx                           ← loads Lora + Geist Mono + Inter
+└── page.tsx                             ← renders <GlimmLayout />
+
+components/
+├── layouts/GlimmLayout.tsx              ← THE main layout (sidebar + main content)
+├── case-study/                          ← reused blocks for AI Chatbot case study
+│   ├── CaseStudyHero.tsx
+│   ├── CaseStudyLayout.tsx              ← currently wraps case study; will be replaced by WorkPageLayout
+│   └── blocks.tsx                       ← ProblemLayer, KeyDecision, PullQuote, Timeline, etc.
+├── Header.tsx                           ← used by CaseStudyLayout (slated for deletion)
+├── RotatingHeadline.tsx                 ← currently unused after Glimm iteration
+├── FadeUp.tsx                           ← reusable utility
+├── ThemeToggle.tsx                      ← kept for future dark mode
+└── ThemeProvider.tsx                    ← kept for future dark mode
+
+data/
+├── track-record.ts                      ← 17 Kissflow + 4 Techfully + 1 Community entries
+└── achievements.ts                      ← 4 achievement entries (mostly placeholder content)
+
+public/
+└── images/work/                         ← placeholder SVGs (placeholder-1/2/3.svg)
+
+.gitignore                               ← excludes .claude/
+AGENTS.md                                ← Next.js 16 reminder
+CLAUDE.md                                ← currently empty/references AGENTS.md
+SESSION-SUMMARY.md                       ← this file
+```
+
+### Git branch structure
+
+| Branch | Commit | What it has |
+|---|---|---|
+| `main` | latest | Glimm-only, cleaned up, iteration-in-progress |
+| `archive/multi-layout` | `dc3a9fb` | Full multi-layout system (Editorial + Workspace + Cinematic + Index + Split + Glimm), BG/gradient pickers, welcome screen, modal, carousel, everything |
+
+### Recent commit history on main
+
+```
+[current]   In-progress Glimm iteration (uncommitted edits)
+796ae34    Focus portfolio on Glimm layout — remove multi-layout system
+dc3a9fb    Expand portfolio with multi-layout system, case study page, and Glimm direction
+b0c922c    Build complete portfolio — all sections, dark mode, track record, modals, animations
+84b0c8e    Initial commit from Create Next App
 ```
 
 ---
 
-## Track Record Section — Detailed Design
+## 5. Current Design Language (Glimm)
 
-### Data Model
-```typescript
-type TrackRecordEntry = {
-  company: string | null;        // "Kissflow", "Techfully", or null
-  title: string;                 // "Homepage Redesign"
-  type: "Major feature" | "Enhancement" | "Design system" | "Career" | "Achievement" | "Community";
-  date: string;                  // "May 2022" or "2023"
-  year: number;                  // for grouping
-  description?: string;          // 1-2 line summary
-  highlighted: boolean;          // shown by default (user controls which)
-  images?: string[];             // UI thumbnail paths (highlighted entries only)
-  links?: {
-    docs?: string;               // documentation URL
-    caseStudy?: string;          // portfolio/Medium URL
-  };
-};
-```
+**Swiss-minimalist editorial** — derived from analyzing glimm.dev + 12 reference sites (emilkowal.ski, paco.me, leerob.com, delba.dev, brianlovin.com, jhey.dev, rauchg.com, barvian.me, nikolovlazar.com, anthonyhobday.com, frankchimero.com, sonner.emilkowal.ski).
 
-### Highlighted vs Regular Entries
-| Aspect | Highlighted | Regular |
-|---|---|---|
-| Default visibility | Always visible | Hidden behind "Show all" |
-| Left border | Accent colored | None |
-| Background | Tinted | Transparent |
-| UI thumbnails | Yes (click → lightbox) | No |
-| Links (docs/case study) | Yes | No |
+### 7 core principles all references share
+1. **Reductionism** — every element must justify itself
+2. **Typography is the visual system** (size + weight, no color contrast)
+3. **Pure monochrome** — color lives in *content*, not chrome
+4. **Single narrow centered column** (600–800px)
+5. **Generous whitespace as a design element**
+6. **System or workhorse sans-serif** (Inter, system-ui)
+7. **Content sits flat** — no cards, borders, shadows, rounded corners (or extremely subtle)
 
-### Current Highlighted Entries (6)
-1. Kissflow — AI Chatbot for Reports & Analytics (2024)
-2. Kissflow — Homepage Redesign (2023) — 4x engagement, 31% faster
-3. Kissflow — RBAC (2023)
-4. Kissflow — Metadata Intelligence (2023)
-5. Kissflow — Design System (2022–Present) — 250+ components, 180 tokens
-6. Techfully — Online Assessment Platform (2021) — 10K+ students
+### Current Glimm execution
 
-### All entries span 2021–2025, grouped by year when expanded
-
----
-
-## Hero Copy (recruiter-optimized, current state)
-
-> Close to 5 years designing products that people actually use — across B2B SaaS, Low-code/No-code, and EdTech. I turn complex workflows into intuitive experiences and build design systems that scale across teams and platforms.
->
-> Shipped 30+ features at Kissflow serving 10,000+ customers in 150+ countries. From AI-powered analytics to a 250+ component design system — I own problems end-to-end, from research to production.
->
-> **Currently co-creating with Claude to push features and ideas to production faster.**
-
----
-
-## Tech Stack
-
-| Layer | Tool | Version |
-|---|---|---|
-| Framework | Next.js (App Router) | 16.2.3 |
-| Language | TypeScript | 5.x |
-| Styling | Tailwind CSS | v4 |
-| Fonts | **Lora** (serif, headings + body) + **Geist Mono** (labels/tags/metadata) | Google Fonts |
-| Theme | next-themes | 0.4.6 |
-| Animations | Framer Motion (not yet wired — subtle fade-ups planned) | 12.38.0 |
-| Icons | Lucide React | 1.8.0 |
-| Hosting | Vercel (free tier, not yet deployed) | — |
-| Analytics | Vercel Analytics (post-launch) | — |
-| Domain | Undecided (will use free domain available) | — |
-
-### Font Replaceability
-All font references centralized in `tailwind.config.ts` (via `@theme inline` in globals.css) + `app/layout.tsx`. Swapping fonts = changing 2 files. **Lora is a placeholder** — user may replace with a different serif later based on visual feel.
-
----
-
-## Color Palette (Pastel placeholders — will update later)
-
-### Light Mode (default)
-| Token | Value | Usage |
-|---|---|---|
-| `--bg` | `#FAFAF9` | Page background (warm off-white) |
-| `--text-primary` | `#1C1917` | Headings |
-| `--text-body` | `#44403C` | Body text |
-| `--text-muted` | `#A8A29E` | Nav, captions, dates |
-| `--accent` | `#7C9CB5` | Links, highlights (pastel steel blue) |
-| `--accent-hover` | `#5B7D99` | Link hover |
-| `--accent-bg` | `#EEF2F6` | Tag backgrounds |
-| `--border` | `#E7E5E4` | Dividers |
-| `--highlight-bg` | `#F5F0EB` | Highlighted track record rows |
-| `--highlight-border` | `#7C9CB5` | Left border on highlighted rows |
-
-### Dark Mode
 | Token | Value |
 |---|---|
-| `--bg` | `#1C1917` |
-| `--text-primary` | `#FAFAF9` |
-| `--text-body` | `#D6D3D1` |
-| `--text-muted` | `#78716C` |
-| `--accent` | `#93B1C9` |
-| `--border` | `#292524` |
+| Background | `#F8F8F8` |
+| Text primary | `#1A1A1A` |
+| Text muted | `#7A7A7A` |
+| Borders | `#E5E5E5` |
+| Image bg | `#EEEEEE` |
+| Font | Inter (scoped via `.glimm-layout` selector + `!important`) |
+| Sidebar width | 260px sticky left |
+| Main content | max-w-760px, centered |
+| Card chrome | none (flat) — image is the visual anchor, text follows in plain typography |
+| Rounded corners | only on images (`rounded-lg`) |
+| Section spacing | `space-y-12` (48px between work/achievement entries) |
+| Section dividers | thin `#E5E5E5` border-bottom between major sections |
+| Headings | lowercase, bold/semibold |
+| Mono labels | uppercase, `0.1em` tracking |
 
-### Track Record Type Tag Colors (6 types, each with distinct pastel bg + text)
-Major feature, Enhancement, Design system, Career, Achievement, Community — all defined in `globals.css` as CSS variables with light and dark variants.
+### Sidebar contents (homepage)
+- `afsar` brand → `/`
+- Divider
+- Nav anchors with active state: `overview` / `work` / `achievements` / `about` / `contact`
+- Divider
+- `chennai, india` · `email →` · `linkedin →` · `resume ↗`
+- Spacer
+- `v0.3 · 2026` (mono, muted)
+
+### Main content sections (homepage)
+1. **Overview/Hero** — Portrait placeholder (112×112 rounded-lg) → eyebrow → name h1 → "I'm Afsar, a designer who builds end-to-end." → intro paragraph (ends with "Currently pushing what a designer can ship — with a little help from AI.")
+2. **Work** — flat image+title+description groups, "Read case study →" link only when applicable, `+ Show all 16 entries` button at bottom
+3. **Achievements** — flat image+title+description+testimonial groups (4 entries)
+4. **About** — 3 paragraph blocks
+5. **Get in touch** — 3 underlined arrow-prefixed links
+6. **Footer** — none (version tag lives in sidebar)
 
 ---
 
-## File Structure
+## 6. Reference Sites Analyzed
 
+### Primary reference
+- **glimm.dev** — Inter, monochrome, top inline nav, single column, code-block aesthetic. Uses Inter + Geist Mono + IoskeleyMono + Caveat (loaded via next/font/google).
+
+### 12 secondary references (synthesized)
+
+**Family A — "Archive":** Lazar Nikolov, Anthony Hobday, Lee Robinson, Sonner docs. Date-prefixed entries, count badges, tab-separator nav.
+
+**Family B — "Editorial / Personal":** Frank Chimero, Paco Coursey, Brian Lovin, Lee Robinson. Writing-first, "Now" sections, philosophical voice.
+
+**Family C — "Designer-Engineer Minimal":** Emil Kowalski, Delba, Max Barvian, Jhey Tompkins. Project list + brief description, italic role identifier, embedded personal touches.
+
+### What every reference avoids
+- Sidebars (current Glimm has one — single deviation)
+- Cards with chrome
+- Rounded corners on content
+- Decorative gradients/backgrounds
+- Big hero photos
+- Multi-column grids
+- Modal overlays
+- Display fonts
+- Brand color accents in chrome
+- Auto-cycling content
+
+### What's worth borrowing later (not yet implemented)
+- "Now" / "Currently" section (Paco, Lee)
+- Date-prefixed entries (YYYY-MM-DD — Lazar)
+- Count badges (Anthony Hobday: "Side projects 13")
+- Spotify now-playing (Lee)
+- Italic role identifier (Emil: "Design Engineer")
+
+---
+
+## 7. User Preferences & Feedback (Memory)
+
+Stored at `/Users/afsar/.claude/projects/-Users-afsar-portfolio/memory/`:
+
+| Preference | Detail |
+|---|---|
+| **No Claude in commits** | Never include "Co-Authored-By: Claude" or any AI mention in commit messages |
+| **No re-analysis** | Use existing session context; don't re-fetch/re-analyze prior work |
+| **"Layout" means structural** | When user says "layouts", they mean page composition/structure — NOT interactive features (cursors, command palettes, etc.) |
+| **Portfolio review findings** | Recruiter-perspective insights — real profile photo and real screenshots are still missing |
+| **GitHub accounts** | Active: `mafsar08`. Also has `mohammedafsar08`. Git pushes use `mafsar08` (had to switch active account during this thread) |
+
+---
+
+## 8. Hero Headline Decisions
+
+- **Final form (static):** "I'm Afsar, a designer who builds end-to-end."
+- **Considered phrases (rotating, removed):** ships end-to-end · codes alongside engineers · partners with AI · builds the systems behind the screens
+- **Reasoning for static:** matches Swiss editorial principle of no animations competing with content
+
+---
+
+## 9. Track Record Data (`data/track-record.ts`)
+
+22 entries total:
+- 17 Kissflow features (generated from real help-docs via WebFetch, with what/how/impact stub content)
+- 4 Techfully entries (placeholder content)
+- 1 Community entry (SAAS Design)
+
+6 currently `highlighted: true`:
+1. Kissflow Intelligence (AI Chatbot) — 2026 — has `links.caseStudy: "/case-studies/ai-chatbot"`
+2. AI Control Center — 2026
+3. Document Templates with AI Generation — 2026
+4. AI Solution Analyzer (Metadata Intelligence) — 2025
+5. Homepage Redesign — 2025
+6. RBAC — 2025
+7. Service Accounts & Impersonation — 2023
+8. Techfully Online Assessment Platform — 2021
+
+Each entry has: `company`, `title`, `type`, `date`, `year`, `description`, `highlighted`, `images[]`, optional `links.docs` (real Kissflow help URLs), optional `links.caseStudy`, and `details.{ what, how, impact }`.
+
+**Image placeholders:** `/images/work/placeholder-1.svg` through `placeholder-3.svg` (peach/warm tones — slightly off-brand for glimm aesthetic; consider replacing with monochrome placeholders or real screenshots).
+
+---
+
+## 10. Case Study Content (`/case-studies/ai-chatbot`)
+
+Rich editorial structure with these blocks (in `components/case-study/blocks.tsx`):
+- `Narrow` / `Wide` column wrappers
+- `SectionDivider`
+- `Eyebrow` (mono uppercase label)
+- `EditorNote` (yellow draft annotation for user's headline alternates)
+- `PullQuote` (italic + accent border)
+- `KeyDecision` (accent border box)
+- `Callout` (amber-tinted notice)
+- `ProblemLayer` (numbered editorial section)
+- `Timeline` (Phase 1 → Phase 2)
+- `ImagePlaceholder` (dashed box with icon + label + desc)
+- `ImageGrid` (2-up or 3-up)
+- `ClosingLine`
+- `Term` (italic emphasis)
+- `CraftItem` (h3 with inline tag)
+
+Content is in `app/case-studies/ai-chatbot/page.tsx` — 11 major sections covering: hero, context, problem (3 layers), why conversational, ambition & constraint, Phase 1, Phase 2, designing for trust, conversation & context model, building it (Claude Code mention), bigger picture & reflection, closing.
+
+---
+
+## 11. NEXT PLANNED TASK (in progress, awaiting user "go")
+
+**Detail pages plan — Option C (minimal sidebar)** — approved by user but not yet implemented.
+
+### Goal
+Replace the (already-deleted) modal pattern with full-page detail routes. Every work entry with substantial content gets its own page at `/work/<slug>`.
+
+### Approach summary
+1. **URL pattern:** `/work/<slug>` for all detail pages
+2. **Two templates:**
+   - Template A (rich case study) — uses existing `components/case-study/*` blocks
+   - Template B (simple feature page) — renders data: image, eyebrow, title, description, what/how/impact, images stack, docs link
+3. **Minimal sidebar on detail pages** — same brand + contact + version, but section nav replaced by single `← back to work` link
+4. **Slug strategy** — manual `slug?: string` field on `TrackRecordEntry`; populate for highlighted entries first
+5. **Click behavior on homepage** — entire work card area becomes a `<Link href="/work/<slug>">` when slug exists
+6. **SEO** — `generateMetadata` per entry
+7. **Back link** — `/#glimm-work`
+8. **URL migration** — `/case-studies/ai-chatbot` → `/work/ai-chatbot` with permanent redirect in `next.config.ts`
+
+### Files to create/modify (next session)
+| File | Action |
+|---|---|
+| `data/track-record.ts` | Add `slug?: string`; populate for ~6 highlighted entries |
+| `app/work/[slug]/page.tsx` | New dynamic route; conditional Template A/B |
+| `app/work/[slug]/case-studies/ai-chatbot.tsx` | Move from current `/case-studies/ai-chatbot/page.tsx` |
+| `components/work/WorkPageLayout.tsx` | New — minimal sidebar wrapper |
+| `components/work/FeaturePage.tsx` | New — Template B renderer |
+| `next.config.ts` | Add redirect `/case-studies/ai-chatbot` → `/work/ai-chatbot` |
+| `components/layouts/GlimmLayout.tsx` | Wrap work cards in `<Link>` when slug exists |
+| `app/case-studies/ai-chatbot/page.tsx` | Delete after move |
+| `components/Header.tsx` | Delete (no longer needed after case study moves) |
+
+### What's still missing for production
+- Real profile photo (placeholder is `<div className="w-28 h-28 bg-[#EEEEEE]" />`)
+- Real product screenshots (currently all entries point to `/images/work/placeholder-1.svg` etc.)
+- Resume PDF at `/public/resume.pdf` (referenced but file doesn't exist)
+- Final case study content beyond AI Chatbot
+- Achievement placeholders are pseudo-content (testimonial quotes, descriptions)
+
+---
+
+## 12. Key Open Decisions / Things to Revisit
+
+1. **Profile photo** — biggest single trust gap; placeholder must be replaced soon
+2. **Real screenshots** — placeholder SVGs are warm-toned, mildly clash with monochrome Glimm; ideally replace with actual project screenshots
+3. **About section copy** — currently 3 sterile paragraphs; could benefit from "Now" section (per references)
+4. **Dark mode** — ThemeToggle + ThemeProvider kept but no toggle UI currently rendered in Glimm; would need to add to sidebar if dark mode wanted
+5. **Mobile sidebar** — currently collapses to a top bar; works but minimal
+6. **404 / not-found** — using default; could customize for portfolio
+7. **OG / sharing metadata** — not yet implemented per-route
+8. **Analytics** — not yet added (Vercel Analytics planned)
+9. **Domain** — undecided
+
+---
+
+## 13. Quick Resume Commands for Next Session
+
+```bash
+cd /Users/afsar/portfolio
+
+# Check current state
+git status
+git log --oneline -5
+
+# Run dev
+npm run dev
+
+# Build
+npm run build
+
+# View detail pages (when implemented)
+# /                              → Glimm homepage
+# /work/<slug>                   → detail page (TODO)
+# /case-studies/ai-chatbot       → current AI Chatbot case study (to be moved to /work/ai-chatbot)
 ```
-portfolio/
-├── app/
-│   ├── layout.tsx              ← root layout, fonts (Lora + Geist Mono), ThemeProvider
-│   ├── page.tsx                ← single page composing all sections
-│   └── globals.css             ← CSS variables, color tokens (light + dark), Tailwind theme
-├── components/
-│   ├── Header.tsx              ← sticky nav + theme toggle
-│   ├── Hero.tsx                ← name, title, recruiter-optimized intro
-│   ├── WorkHistory.tsx         ← company timeline (Kissflow + Techfully)
-│   ├── TrackRecord.tsx         ← track record section with show/hide
-│   ├── TrackRecordEntry.tsx    ← individual entry row (highlighted vs regular)
-│   ├── ImageLightbox.tsx       ← thumbnail click-to-expand overlay
-│   ├── About.tsx               ← 3-paragraph bio
-│   ├── Contact.tsx             ← email + LinkedIn (inline SVG for LinkedIn icon)
-│   ├── Footer.tsx              ← copyright line
-│   ├── ThemeToggle.tsx         ← sun/moon dark mode button
-│   └── ThemeProvider.tsx       ← next-themes wrapper (client component)
-├── data/
-│   └── track-record.ts        ← all 16 track record entries, typed
-├── public/
-│   └── images/work/            ← for UI screenshots (empty, to be added)
-├── package.json
-├── next.config.ts
-├── tsconfig.json
-└── SESSION-SUMMARY.md          ← this file
+
+To revisit the multi-layout exploration phase:
+```bash
+git checkout archive/multi-layout   # view the snapshot
+git checkout main                   # return to current Glimm work
 ```
 
 ---
 
-## What's Done
-- [x] Project scaffolded (Next.js 16 + Tailwind v4 + TypeScript)
-- [x] All dependencies installed (next-themes, framer-motion, lucide-react)
-- [x] Global styles with CSS variables (light + dark mode tokens)
-- [x] Root layout with Lora + Geist Mono fonts
-- [x] Sticky header with nav links, dot separators, dark mode toggle
-- [x] Hero section with recruiter-optimized copy
-- [x] Work History timeline (Kissflow + Techfully)
-- [x] Track Record section (6 highlighted, 16 total, show/hide, year grouping)
-- [x] About section (3 short paragraphs)
-- [x] Contact section (email + LinkedIn)
-- [x] Footer
-- [x] Dark mode (next-themes, class-based, light default)
-- [x] Build passes clean (`npm run build` — zero errors)
-- [x] Dev server verified working at localhost:3000
+## 14. Architectural Memory
 
-## What's Remaining
-- [ ] **Framer Motion animations** — subtle fade-up on scroll for each section (planned but not wired)
-- [ ] **Responsive polish** — mobile layout fine-tuning (basic responsive works via Tailwind)
-- [ ] **Profile photo** — replace placeholder circle with real photo
-- [ ] **Typography** — may swap Lora for another serif based on visual feel
-- [ ] **Colors** — replace pastel placeholders with final palette
-- [ ] **Track record data** — add more entries, update `#` placeholder links with real URLs
-- [ ] **UI screenshots** — add thumbnails to highlighted track record entries
-- [ ] **Deploy to Vercel** — push to GitHub, connect Vercel, get live URL
-- [ ] **Domain** — purchase and connect (undecided on name)
-- [ ] **Analytics** — enable Vercel Analytics post-launch
-- [ ] **Blog** — future addition (architecture supports MDX when ready)
+- **CSS scoping pattern:** `.glimm-layout, .glimm-layout *` selector with `!important` to win against Tailwind v4's `@theme inline` (which inlines `--font-lora` etc. at parse time, meaning regular CSS variable override doesn't propagate to utility classes)
+- **Next.js font loading:** All fonts go through `next/font/google` to set CSS variables (`--font-inter`, `--font-lora`, `--font-geist-mono`). Tailwind reads via `@theme inline` aliases.
+- **Theme tokens:** `:root` defines light mode, `.dark` overrides for dark mode. `@theme inline` maps these to Tailwind utility classes (`bg-bg`, `text-text-primary`, etc.).
+- **Active section detection:** `IntersectionObserver` with `rootMargin: "-30% 0px -60% 0px"` in sidebar nav useEffect.
+- **Auth note:** `gh auth switch --user mafsar08` then `gh auth setup-git` was required during this thread to push to the correct repo (the other account `mohammedafsar08` was active by default and lacks write permission).
 
 ---
 
-## User Preferences (for future sessions)
-- Prefers **simple, lightweight** interactions — no heavy animations
-- Wants **full control** over the code — no component libraries (no shadcn)
-- Typography must be **easily replaceable** (centralized font config)
-- Colors are **temporary** — will finalize later
-- Case studies will link **externally** (Medium or other platforms), not built as pages
-- Track record highlighted entries are **manually controlled** by user (not auto-selected)
-- Footer text stays as "Designed & built by me" (user rejected "built using Claude" for footer)
-- About section should be **simple and straightforward** — no storytelling
-- No education section in work history
-- English only, no multi-language
+## End of summary

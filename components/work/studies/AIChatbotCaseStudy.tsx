@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import {
   Narrow,
@@ -19,16 +17,9 @@ import {
   Term,
 } from "@/components/case-study/blocks";
 
-export const metadata: Metadata = {
-  title:
-    "Kissflow Intelligence — Case Study | Mohammed Afsar",
-  description:
-    "How I designed Kissflow's first two-way conversational AI assistant — across two phases, one technical pivot, and a set of trade-offs.",
-};
-
-export default function AIChatbotCaseStudyPage() {
+export default function AIChatbotCaseStudy() {
   return (
-    <CaseStudyLayout>
+    <>
       {/* ────────────────────────────────────────── */}
       {/* 1 · HERO */}
       {/* ────────────────────────────────────────── */}
@@ -1246,6 +1237,6 @@ export default function AIChatbotCaseStudyPage() {
           </p>
         </Narrow>
       </section>
-    </CaseStudyLayout>
+    </>
   );
 }

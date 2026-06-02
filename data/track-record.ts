@@ -24,6 +24,8 @@ export type TrackRecordEntry = {
     how?: string;
     impact?: string;
   };
+  /** When present, this entry has a detail page at /work/<slug> */
+  slug?: string;
 };
 
 export const trackRecordData: TrackRecordEntry[] = [
@@ -31,6 +33,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Kissflow Intelligence (AI Chatbot)",
+    slug: "ai-chatbot",
     type: "Major feature",
     date: "Mar 2026",
     year: 2026,
@@ -55,6 +58,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "AI Control Center",
+    slug: "ai-control-center",
     type: "Major feature",
     date: "2026",
     year: 2026,
@@ -102,6 +106,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Document Templates with AI Generation",
+    slug: "document-templates",
     type: "Major feature",
     date: "2026",
     year: 2026,
@@ -151,6 +156,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "AI Solution Analyzer (Metadata Intelligence)",
+    slug: "ai-solution-analyzer",
     type: "Major feature",
     date: "2025",
     year: 2025,
@@ -198,6 +204,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Homepage Redesign",
+    slug: "homepage-redesign",
     type: "Major feature",
     date: "2025",
     year: 2025,
@@ -291,6 +298,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Role-Based Access Control (RBAC)",
+    slug: "rbac",
     type: "Major feature",
     date: "2025",
     year: 2025,
@@ -410,6 +418,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Service Accounts & Impersonation",
+    slug: "service-accounts",
     type: "Major feature",
     date: "2023",
     year: 2023,
@@ -471,6 +480,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Techfully",
     title: "Online Assessment Platform",
+    slug: "online-assessment-platform",
     type: "Major feature",
     date: "2021",
     year: 2021,
@@ -547,27 +557,5 @@ export const trackRecordData: TrackRecordEntry[] = [
       "/images/work/placeholder-2.svg",
     ],
     links: {},
-  },
-
-  // ── Community ───────────────────────────────
-  {
-    company: null,
-    title: "SAAS Design Community \u2013 Founding Member",
-    type: "Community",
-    date: "Ongoing",
-    year: 2023,
-    description:
-      "Chennai-based design community. Hosted 3+ design events for designers across all levels.",
-    highlighted: false,
-    images: [
-      "/images/work/placeholder-1.svg",
-      "/images/work/placeholder-2.svg",
-    ],
-    links: {},
-    details: {
-      what: "Co-founded a Chennai-based design community for designers across all levels.",
-      impact:
-        "Hosted 3+ design events. Update with attendance numbers, community size.",
-    },
   },
 ];

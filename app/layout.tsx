@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lora, Geist_Mono, Inter } from "next/font/google";
+import { Lora, Inter } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -7,12 +7,6 @@ const lora = Lora({
   variable: "--font-lora",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -37,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lora.variable} ${geistMono.variable} ${inter.variable} antialiased`}
+      className={`${lora.variable} ${inter.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col bg-bg text-text-body font-serif">

@@ -56,12 +56,4 @@ export const achievements: Achievement[] = [
       role: "Product Designer, Kissflow",
     },
   },
-  {
-    id: "saas-design-community",
-    title: "SAAS Design Community \u2014 Founding Member",
-    date: "Ongoing",
-    year: 2023,
-    description:
-      "Co-founded SAAS Design, a Chennai-based community for product designers. Hosted 3+ design events bringing together designers across all levels.",
-  },
 ];
