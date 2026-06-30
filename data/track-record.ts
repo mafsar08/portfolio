@@ -83,6 +83,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Analytics Query Builder (Dataviews)",
+    slug: "dataviews",
     type: "Major feature",
     date: "2026",
     year: 2026,
@@ -133,6 +134,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Audit Log Enhancements with AI Summaries",
+    slug: "audit-log-enhancements",
     type: "Enhancement",
     date: "2025",
     year: 2025,
@@ -181,6 +183,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Password Policy Configuration",
+    slug: "password-policy",
     type: "Enhancement",
     date: "2025",
     year: 2025,
@@ -229,6 +232,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "User Management Overhaul",
+    slug: "user-management",
     type: "Major feature",
     date: "2025",
     year: 2025,
@@ -252,6 +256,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Custom Columns in User Management",
+    slug: "custom-columns",
     type: "Enhancement",
     date: "2025",
     year: 2025,
@@ -275,6 +280,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Data Backup Status & Notifications",
+    slug: "data-backup",
     type: "Enhancement",
     date: "2025",
     year: 2025,
@@ -324,6 +330,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Global Search Enhancement",
+    slug: "global-search",
     type: "Enhancement",
     date: "Nov 2024",
     year: 2024,
@@ -347,6 +354,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "App Items in Global My Items",
+    slug: "app-items",
     type: "Enhancement",
     date: "2024",
     year: 2024,
@@ -370,6 +378,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "SAML Configuration Enhancement",
+    slug: "saml-configuration",
     type: "Enhancement",
     date: "2024",
     year: 2024,
@@ -393,6 +402,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "Print Attachments in File Preview",
+    slug: "print-attachments",
     type: "Enhancement",
     date: "2024",
     year: 2024,
@@ -443,6 +453,7 @@ export const trackRecordData: TrackRecordEntry[] = [
   {
     company: "Kissflow",
     title: "File Preview Revamp",
+    slug: "file-preview-revamp",
     type: "Enhancement",
     date: "2023",
     year: 2023,

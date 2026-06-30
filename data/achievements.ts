@@ -16,18 +16,18 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     id: "product-design-rockstar",
-    title: "Product Design Rockstar",
-    company: "Kissflow",
+    title: "Product Design Rockstar at Altius",
+    company: "Altius",
     date: "2026",
     year: 2026,
     description:
-      "Won the Product Design Rockstar award at Kissflow's annual award ceremony \u2014 recognized for consistent design excellence and impact across product modules.",
+      "Annual recognition for consistent design quality and impact across product modules.",
     image: "/images/work/placeholder-1.svg",
     testimonial: {
       quote:
         "Afsar consistently delivers design excellence and brings clarity to complex problems. A true rockstar on the team.",
       author: "Manager Name",
-      role: "VP Design, Kissflow",
+      role: "VP Design, Altius",
     },
   },
   {
@@ -37,7 +37,7 @@ export const achievements: Achievement[] = [
     date: "Jul 2025",
     year: 2025,
     description:
-      "Won Kissflow's internal Flowsurge AI Hackathon by building Metadata Intelligence \u2014 an AI-assisted pre-deployment validator that catches defects in no-code processes before they go live.",
+      "Took 1st place (\u20B91 lakh prize) at Kissflow's 2-day Flowsurge AI hackathon by building Metadata Intelligence \u2014 the Solution Analyser that later shipped as a real feature.",
     image: "/images/work/placeholder-2.svg",
   },
   {
@@ -47,7 +47,7 @@ export const achievements: Achievement[] = [
     date: "2025",
     year: 2025,
     description:
-      "Designed and facilitated an internal design critique workshop for the Kissflow product design team \u2014 establishing structured rituals for sharper, healthier feedback culture.",
+      "Led a workshop for 20+ Kissflow designers \u2014 pairing structured critique with hands-on redesign of real app screens based on what surfaced.",
     image: "/images/work/placeholder-3.svg",
     testimonial: {
       quote:

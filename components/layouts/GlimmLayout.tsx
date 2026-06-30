@@ -6,8 +6,7 @@ import Image from "next/image";
 import { trackRecordData } from "@/data/track-record";
 import { achievements } from "@/data/achievements";
 import { experience } from "@/data/experience";
-
-type PreviewData = { title: string; images?: string[] };
+import WorkPreview, { type PreviewData } from "@/components/work/WorkPreview";
 
 function useChennaiTime() {
   const [time, setTime] = useState<string>("");
@@ -61,9 +60,19 @@ export default function GlimmLayout() {
               <h1 className="text-[28px] md:text-[32px] leading-[1.1] font-normal tracking-tight text-[#1A1A1A]">
                 Mohammed Afsar
               </h1>
-              <div className="mt-1.5 flex items-center gap-2 text-[13px] text-[#6B6862]">
-                <span className="status-dot inline-block w-1.5 h-1.5 rounded-full bg-[#6B8A4F]" />
-                <span>Senior Product Designer at Kissflow</span>
+              <div className="mt-1.5 text-[13px] text-[#6B6862]">
+                Senior Product Designer at{" "}
+                <a
+                  href="https://kissflow.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-baseline gap-0.5 text-[#1A1A1A]"
+                >
+                  <span className="link-reveal">Kissflow</span>
+                  <span className="text-[#9A968F] group-hover:text-[#1A1A1A] arrow-nudge text-[11px]">
+                    ↗
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -144,10 +153,22 @@ export default function GlimmLayout() {
                   {job.period}
                 </span>
                 <div>
-                  <div className="flex items-center gap-2 text-[15px] text-[#1A1A1A]">
-                    <span>{job.role} at {job.company}</span>
-                    {job.current && (
-                      <span className="status-dot inline-block w-1.5 h-1.5 rounded-full bg-[#6B8A4F] ml-1" />
+                  <div className="text-[15px] text-[#1A1A1A]">
+                    {job.role} at{" "}
+                    {job.companyUrl ? (
+                      <a
+                        href={job.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-baseline gap-0.5"
+                      >
+                        <span className="link-reveal">{job.company}</span>
+                        <span className="text-[#9A968F] group-hover:text-[#1A1A1A] arrow-nudge text-[12px]">
+                          ↗
+                        </span>
+                      </a>
+                    ) : (
+                      job.company
                     )}
                   </div>
                   {job.description && (
@@ -190,8 +211,10 @@ export default function GlimmLayout() {
                   </span>
                   <div>
                     <div className="text-[15px] text-[#1A1A1A]">{ach.title}</div>
-                    {ach.company && (
-                      <div className="text-[13px] text-[#9A968F] mt-0.5">{ach.company}</div>
+                    {ach.description && (
+                      <p className="mt-1.5 text-[13.5px] leading-[1.65] text-[#6B6862]">
+                        {ach.description}
+                      </p>
                     )}
                   </div>
                 </li>
@@ -248,9 +271,8 @@ export default function GlimmLayout() {
         </section>
 
         {/* ── Footer ── */}
-        <footer className="pt-10 mt-10 border-t border-[#ECE9E2] flex items-center justify-between text-[11.5px] font-mono-tabular text-[#9A968F]">
+        <footer className="pt-10 mt-10 border-t border-[#ECE9E2] text-[11.5px] font-mono-tabular text-[#9A968F]">
           <span>© 2026 mohammed afsar</span>
-          <span>v0.4 · {chennaiTime || "—"} ist</span>
         </footer>
       </main>
     </div>
@@ -294,12 +316,12 @@ function WorkRow({
         {year}
       </span>
       <div className="min-w-0">
-        <div className="flex items-baseline gap-3">
+        <div className="flex items-baseline gap-1.5">
           <span className={`${titleSize} ${titleColor} group-hover:text-[#1A1A1A]`}>
             {title}
           </span>
           {slug && (
-            <span className="ml-auto text-[#9A968F] group-hover:text-[#1A1A1A] arrow-nudge">
+            <span className="text-[#9A968F] group-hover:text-[#1A1A1A] arrow-nudge text-[13px]">
               ↗
             </span>
           )}
@@ -338,106 +360,6 @@ function WorkRow({
   );
 }
 
-const PREVIEW_ADVANCE_MS = 2500;
-const PREVIEW_FADE_MS = 400;
-
-function WorkPreview({
-  entry,
-  top,
-}: {
-  entry: PreviewData | null;
-  top: number;
-}) {
-  const [render, setRender] = useState<PreviewData | null>(entry);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (entry) {
-      setRender(entry);
-      setIndex(0);
-    }
-  }, [entry]);
-
-  const images = render?.images ?? [];
-  const multi = images.length > 1;
-
-  useEffect(() => {
-    if (!entry || !multi) return;
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % images.length);
-    }, PREVIEW_ADVANCE_MS);
-    return () => clearInterval(id);
-  }, [entry, multi, images.length]);
-
-  if (!render) return null;
-
-  const visible = !!entry;
-  const clampedTop = Math.max(24, top);
-
-  return (
-    <div
-      aria-hidden
-      className={`hidden xl:block fixed z-40 w-[320px] pointer-events-none transition-all duration-200 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
-      }`}
-      style={{
-        top: `${clampedTop}px`,
-        left: "min(calc(50% + 352px), calc(100vw - 344px))",
-        transitionProperty: "top, opacity, transform",
-      }}
-    >
-      <div className="relative w-full aspect-[16/10] rounded-lg bg-[#EFEDE8] ring-1 ring-[#E8E5DE] shadow-[0_10px_40px_-12px_rgba(0,0,0,0.12)] overflow-hidden">
-        {images.map((src, i) => (
-          <div
-            key={src}
-            className="absolute inset-0 transition-opacity ease-out"
-            style={{
-              opacity: i === index ? 1 : 0,
-              transitionDuration: `${PREVIEW_FADE_MS}ms`,
-            }}
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="320px"
-            />
-          </div>
-        ))}
-
-        {multi && (
-          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
-            {images.map((_, i) => {
-              const active = i === index;
-              return (
-                <span
-                  key={i}
-                  className="block rounded-full overflow-hidden transition-all duration-300 relative"
-                  style={{
-                    width: active ? 22 : 5,
-                    height: 4,
-                    backgroundColor: active
-                      ? "rgba(255,255,255,0.45)"
-                      : "rgba(255,255,255,0.55)",
-                    boxShadow: "0 0 0 0.5px rgba(0,0,0,0.08)",
-                  }}
-                >
-                  {active && (
-                    <span
-                      key={`${render.title}-${i}`}
-                      className="glimm-progress-fill absolute inset-0 bg-white"
-                    />
-                  )}
-                </span>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function ContactRow({
   label,

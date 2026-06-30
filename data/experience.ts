@@ -1,6 +1,7 @@
 export type Experience = {
   role: string;
   company: string;
+  companyUrl?: string;
   period: string;
   startYear: number;
   endYear: number | "Present";
@@ -12,6 +13,7 @@ export const experience: Experience[] = [
   {
     role: "Senior Product Designer",
     company: "Kissflow",
+    companyUrl: "https://kissflow.com/",
     period: "2022—Present",
     startYear: 2022,
     endYear: "Present",

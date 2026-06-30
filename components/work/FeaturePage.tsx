@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { trackRecordData, type TrackRecordEntry } from "@/data/track-record";
+import PrevNextNav from "./PrevNextNav";
 
 export default function FeaturePage({ entry }: { entry: TrackRecordEntry }) {
   const images = entry.images ?? [];
@@ -90,42 +90,7 @@ export default function FeaturePage({ entry }: { entry: TrackRecordEntry }) {
       )}
 
       {(prevEntry || nextEntry) && (
-        <nav className="mt-4 pt-10 border-t border-[#ECE9E2] grid grid-cols-2 gap-6">
-          {prevEntry ? (
-            <Link href={`/work/${prevEntry.slug}`} className="group block">
-              <div className="font-mono-tabular text-[10.5px] uppercase tracking-[0.14em] text-[#9A968F] mb-1.5 flex items-center gap-2">
-                <span className="inline-block transition-transform duration-200 group-hover:-translate-x-0.5">
-                  ←
-                </span>
-                <span>Previous</span>
-              </div>
-              <div className="text-[15px] text-[#1A1A1A] group-hover:underline underline-offset-4 decoration-1">
-                {prevEntry.title}
-              </div>
-            </Link>
-          ) : (
-            <span />
-          )}
-
-          {nextEntry ? (
-            <Link
-              href={`/work/${nextEntry.slug}`}
-              className="group block text-right"
-            >
-              <div className="font-mono-tabular text-[10.5px] uppercase tracking-[0.14em] text-[#9A968F] mb-1.5 flex items-center justify-end gap-2">
-                <span>Next</span>
-                <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
-                  →
-                </span>
-              </div>
-              <div className="text-[15px] text-[#1A1A1A] group-hover:underline underline-offset-4 decoration-1">
-                {nextEntry.title}
-              </div>
-            </Link>
-          ) : (
-            <span />
-          )}
-        </nav>
+        <PrevNextNav prev={prevEntry} next={nextEntry} />
       )}
     </article>
   );
