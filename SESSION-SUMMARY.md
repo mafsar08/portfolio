@@ -1,10 +1,10 @@
 # Portfolio — Project State
 
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-08
 **Owner:** Mohammed Afsar
 **Repo:** github.com/mafsar08/portfolio — **public**
-**Live URL:** not deployed yet (Vercel planned)
-**Working assets:** `~/my-projects/portfolio/assets/` (outside the repo)
+**Status:** local only. **Nothing is deployed and nothing is confirmed.**
+**Working files:** `~/my-projects/portfolio/assets/` (outside this repo)
 
 > **This document is the project's memory.** Chat history is auto-deleted after
 > 30 days, so anything worth remembering between sessions belongs here — not in
@@ -22,251 +22,225 @@ Everything is measured against that. Restraint over cleverness.
 
 ---
 
-## 2. What the site is today
+## 2. Current phase — case studies, not design
 
-### Homepage
+The visual design is **still being explored. Nothing about it is settled**, and
+design work is deliberately on hold.
 
-A **single centred column, ~640px wide**, on a warm off-white ground. No
-sidebar, no navigation bar, no hero image. You scroll once and you're done.
+**The active work is the case study content**, starting with the AI Chatbot.
 
-The whole page runs on one rhythm: **a small muted year or label in the left
-gutter, the content in the right.** Work, experience, achievements and contact
-all share it, which is what makes the page feel like one object rather than a
-stack of sections.
+### Decisions made (2026-09-07/08)
+
+| Decision | Detail |
+|---|---|
+| **Rework before adding** | Sharpen the case studies that already exist before writing new ones |
+| **One Markdown file per case study** | Written in `content/case-studies/`, rendered into its own page. Prose stays editable without touching code |
+| **Only 2–3 get the full treatment** | Depth on a few beats thin coverage of nineteen |
+| **Fill the empty image slots** | Method undecided — interactive GIFs, screenshots on device mockups, or flat screenshots. **To decide later** |
+| **Rewrite the prose with a humanize skill** | The skill isn't installed yet; link to follow. Until then, the voice rules in `docs/case-study-process.md` apply |
+
+### Proposed set of three — **not yet confirmed**
+
+| Case study | Why it earns a slot |
+|---|---|
+| **AI Chatbot** | The flagship. Strategy through to shipping own code |
+| **AI Solution Analyzer** | Deep interaction craft — the 'Locate' decision |
+| **Service Accounts** | The differentiator. Non-AI, governance, 2023. Proves range beyond AI work |
+
+---
+
+## 3. The AI Chatbot case study — assessment
+
+The long draft still lives in code rather than as a content file. It is the
+only case study with rich structure, and it needs work before it moves.
+
+### What's strong
+- **Decision boxes** — considered / chosen / why / trade-off, on every major
+  call. The most senior thing on the site
+- **The query-tab passage** — arguing a backend capability onto the roadmap
+  because a technical user needs proof. Influence, not pixels
+- **Honest about the line** between own work and the engineering team's
+- **Specific**: named accuracy bar, the field-ambiguity example, the database
+  migration that lifted the constraint
+
+### What needs fixing
+| Problem | Detail |
+|---|---|
+| **Roughly twice as long as it should be** | ~20-minute read. The best passage sits in the back half where nobody reaches |
+| **Draft notes are still in the body** | Headline options ("my pick, swap freely") appear in ~5 places and would render on the page |
+| **~20 empty image slots** | Every one captioned with what should be there |
+| **No screenshots captured** | The only highlighted feature with none |
+| **Breaks the project's own voice rules** | Em dashes far over the cap; uses at least one banned word |
+| **Different shape from the other four** | Eleven sections against their four |
+
+**Verdict: the thinking is excellent, the packaging isn't finished.** It needs
+cutting and pictures, not re-thinking.
+
+---
+
+## 4. Metrics — pulled 2026-09-07
+
+Usage data now exists for the AI Chatbot. **Full numbers and the queries are in
+`~/my-projects/portfolio/assets/files/` — kept out of this repo because they
+name customers and this repo is public.**
+
+**Never name customers in the portfolio.** Describe them by type — "a global
+energy customer" — not by name.
+
+### What the data supports
+
+| Claim in the case study | Verdict |
+|---|---|
+| Conversation beats a one-way generator | **Supported** — ~38% of requests aren't about reports at all |
+| Trust should be available, not imposed | **Supported** — sources inspected on ~1 in 10 responses |
+| The waiting experience mattered | **Strongly supported** — median response ~10s, 1 in 10 over 22s |
+| Built for business users, not just admins | **Supported** — 56% of messages, and twice as many business users as admins |
+| The assistant drafts, the builder refines | **Supported** — 27% of AI-generated reports get saved into Report Builder |
+| Mandatory context was an acceptable trade-off | **Challenged** — only ~22% of people who opened it ever sent a message |
+| 80–95% accuracy | **Unproven** — not in product analytics. Being chased internally |
+
+### Headline figures (customer accounts only, 120 days)
+- **423 reports generated**, by 131 people across 84 accounts
+- **116 of those saved** into Report Builder — 27%
+- **2,207 messages** from 523 people across 166 accounts
+- **39% sent exactly one message ever**; 20% returned on another day
+- Customer usage **began June 2026** — March–May was internal only
+
+### The finding that should change the writing
+
+**Only about a fifth of people who opened the assistant ever sent a message,
+and 39% of those who did never came back.** This sits exactly where the case
+study flags the mandatory context step as an accepted trade-off. It suggests
+the trade-off was expensive.
+
+**This belongs in the case study, not hidden.** Designing a gate knowingly,
+shipping it honestly, and reporting what it cost is a stronger story than
+claiming the trade-off was free.
+
+### What can't be measured
+Turns per conversation · where the user was when they opened it · success and
+failure rate · accuracy · anything before March 2026.
+
+**Why:** the analytics is a log of server requests, not a record of clicks.
+Anything that happens entirely in the browser leaves no trace.
+
+---
+
+## 5. What the site is today
+
+A **single centred column, ~640px**, warm off-white ground, no sidebar and no
+nav bar. One rhythm throughout: a muted year or label in the left gutter,
+content in the right.
 
 | Section | What's in it |
 |---|---|
-| **Header** | Small round portrait, name, "Senior Product Designer at Kissflow", a short intro paragraph, and a line showing Chennai plus the **live local time** (ticks every 30s) |
-| **Work** | 4 featured entries — year, title, one-line description. Entries with a detail page show a small diagonal arrow. A "Show all 23 entries" toggle reveals the rest as a compact muted list |
-| **Experience** | 2 roles — Kissflow (2022–present), Techfully (2021–2022) |
-| **Achievements** | 4 entries, same gutter rhythm |
-| **About** | 2 short paragraphs |
-| **Contact** | Email, LinkedIn, resume — as labelled rows |
-| **Footer** | A single copyright line |
+| **Header** | Portrait, name, role, short intro, Chennai plus live local time |
+| **Work** | 4 featured entries; a toggle reveals all 23 |
+| **Experience** | 2 roles |
+| **Achievements** | 4 entries |
+| **About** | 2 paragraphs |
+| **Contact** | Email, LinkedIn, resume |
 
-**Hover behaviour:** hovering a work row or an achievement floats a **preview
-image** alongside it, tracking the row's position. Links reveal an underline
-that wipes in from the left; arrows nudge diagonally. That's the entire
-interaction vocabulary — deliberately.
+Hovering a work row floats a preview image beside it. Links underline from the
+left; arrows nudge diagonally. That is the entire interaction vocabulary.
 
-### Detail pages
+**Detail pages** live at `/work/<slug>` — 19 of them. Two templates: a rich
+case study (AI Chatbot only) and a generic feature page for the rest.
 
-Every substantial entry has its own page at `/work/<slug>` — **19 of them**.
-They open with a plain "← back" link and nothing else of the homepage chrome.
-
-Two templates run behind those pages:
-
-- **A rich case study** — currently only the AI Chatbot piece. Editorial
-  structure with layered problem framing, key-decision callouts, pull quotes,
-  and a phase timeline.
-- **A generic feature page** — everything else. Renders the entry's what / how
-  / impact, images, and a link to the public product docs where one exists.
-
-Each page carries its own title and description for search and sharing.
+**Content inventory:** 23 entries — 19 Kissflow, 4 Techfully. 8 highlighted,
+4 shown. 19 with detail pages. 4 achievements.
 
 ---
 
-## 3. Design language (as built)
-
-**Swiss-minimalist editorial.** Derived from glimm.dev plus roughly a dozen
-designer-engineer portfolios — emilkowal.ski, paco.me, leerob.com, delba.dev,
-brianlovin.com, jhey.dev, rauchg.com, barvian.me, nikolovlazar.com,
-anthonyhobday.com, frankchimero.com, sonner.emilkowal.ski.
-
-### Palette in use
-
-Warm, not cool. Off-white ground, warm near-black text, three greys of
-descending weight for body copy, metadata, and separators. **No accent colour
-appears anywhere in the chrome.**
-
-### Type
-
-**Inter throughout**, scoped so the main layout wins over everything else.
-Numbers render tabular so the year gutter stays optically aligned. Headings are
-small and quiet — hierarchy comes from weight and colour, not size jumps.
-
-### Known inconsistency
-
-There are effectively **two colour systems in the project**: a warm stone
-palette with a steel-blue accent defined as proper design tokens (a leftover
-from the earlier editorial direction, still driving the page's base styles and
-dark mode), and the current warm-white values written directly into the main
-layout. **The layout ignores the tokens.**
-
-It works, but it means the tokens are no longer the source of truth. Worth
-consolidating before the site is deployed — right now a token change wouldn't
-visibly do anything.
-
----
-
-## 4. Content inventory
-
-**23 track-record entries** — 19 Kissflow, 4 Techfully.
-**8 marked as highlighted**, but the homepage shows only the **first 4**.
-**19 have detail pages.** **4 achievements.**
-
-Each entry carries: company, title, type, date, year, description, images,
-optional links to public docs, and a what / how / impact breakdown.
-
-Written content is drafted in the docs folder first, then mirrored into the
-data the site reads — so prose stays reviewable outside of code.
-
-### Featured work (currently on the homepage)
-
-Kissflow Intelligence (AI Chatbot) · AI Control Center · Analytics Query
-Builder · Document Templates with AI Generation
-
-Behind the toggle: Audit Log Enhancements with AI Summaries, AI Solution
-Analyzer, Password Policy, Homepage Redesign, User Management Overhaul, Custom
-Columns, Data Backup Status, RBAC, Global Search, App Items in My Items, SAML
-Configuration, Print Attachments, Service Accounts & Impersonation, File
-Preview Revamp, plus the Techfully work — Online Assessment Platform, LMS,
-Design System & Brand System.
-
----
-
-## 5. The journey so far
-
-| Phase | What happened |
-|---|---|
-| **1 — Editorial start** | Serif + mono type, warm off-white with a steel-blue accent, narrow column. Full section set built plus a file-preview modal |
-| **2 — Multi-layout exploration** | Five switchable layouts, background pattern and gradient pickers, a multilingual welcome screen, achievements carousel, rotating headline, first case study |
-| **3 — Real content** | 17 real Kissflow features imported from a CSV, with what / how / impact written from the public product docs |
-| **4 — Glimm direction** | glimm.dev adopted as the primary reference. Monochrome, sticky left sidebar, flat cards |
-| **5 — The big cut** | Deleted the entire multi-layout system, pickers, welcome screen and modals. **~3,500 net lines removed.** One direction survived |
-| **6 — Simplification** | Sidebar removed, everything centred, all card chrome flattened, rotating headline made static |
-| **7 — Single column** | Collapsed to today's 640px column with the year-gutter rhythm |
-| **8 — Detail pages** | Every substantial entry got its own route; 19 slugs, two templates, the case study moved under `/work` |
-
-**Archived:** the full multi-layout exploration still exists on the
-`archive/multi-layout` branch if any of it is ever wanted back.
-
----
-
-## 6. Where assets live
-
-Working files are kept **outside the repo**, at `~/my-projects/portfolio/assets/`:
+## 6. Project structure
 
 | Folder | Holds |
 |---|---|
-| `screenshots/` | Raw product screenshots — 38 files across AI Control Center, AI Solution Analyzer, Audit Log Enhancements, Document Templates, Service Accounts |
-| `files/` | Source documents, CSVs, resume drafts |
-| `exports/` | Anything rendered or handed off |
+| `content/case-studies/` | **Case study prose — the source of truth.** One file per slug |
+| `docs/` | The writing process, voice rules, and short feature summaries |
+| `data/` | Entries the site renders |
+| `components/` | Grouped by purpose — home, work, case-study, ui |
 
-**Why outside:** the repo is public and git history is permanent. Raw internal
-screenshots — including in-progress and unreleased product states — shouldn't
-be published wholesale and can't easily be unpublished. Only the specific
-images that appear on the site get cropped, reviewed, and committed.
+**Working assets** live outside the repo at `~/my-projects/portfolio/assets/`
+— `screenshots/` (38 raw files across 5 features), `files/` (metrics, source
+documents), `exports/`.
+
+**Never commit raw internal screenshots.** This repo is public and git history
+is permanent. Only cropped, reviewed images that appear on the site.
 
 ---
 
-## 7. What's still missing
+## 7. Design direction — provisional
 
-**Blocking a real launch:**
+Swiss-minimalist editorial, derived from glimm.dev plus a dozen
+designer-engineer portfolios. Single narrow column, typography-led hierarchy,
+near-monochrome, flat content, generous whitespace.
 
-1. **Real profile photo** — the header still shows a placeholder graphic. The
-   single biggest trust gap on the page.
-2. **Real product screenshots on the page** — every entry and the hover preview
-   still point at the same three placeholder graphics. The actual screenshots
-   exist and are sitting in the assets folder, unused. **This is the highest-value
-   pending task.**
-3. **Resume PDF** — linked in Contact, but the file doesn't exist. The link is
-   currently broken.
-4. **Deployment** — not deployed; no domain chosen.
+**Treat this as the current direction, not a settled one.** The design rules in
+`CLAUDE.md` are guardrails for consistency while the exploration continues.
 
-**Content depth:**
+**Known inconsistency:** two colour systems coexist — a token set from the
+earlier editorial direction, and the values written directly into the layout.
+The layout ignores the tokens, so changing a token does nothing visible. Worth
+consolidating before launch.
 
-5. Only one entry has a real case study. The rest render generic feature pages.
-6. Achievements are largely placeholder copy, including invented testimonials.
-7. Not every entry's impact line carries a number.
+---
+
+## 8. What's still missing
+
+**Blocking a launch:**
+1. **Real profile photo** — still a placeholder. Biggest trust gap
+2. **Real screenshots on the page** — every entry points at the same three
+   placeholder graphics. The real ones exist, unused, in the assets folder
+3. **Resume PDF** — linked in Contact, file doesn't exist. Broken link
+4. **Deployment** — not deployed, no domain chosen
+
+**Content:**
+5. Only one entry has a real case study; the rest are generic feature pages
+6. Achievements are largely placeholder copy, **including invented testimonials**
+7. Audit Log Enhancements has screenshots but no case study written
 
 **Polish:**
-
-8. Consolidate the two colour systems (see §3).
-9. Custom 404, per-page sharing images, analytics.
-10. 8 entries are flagged highlighted but only 4 render — decide whether that
-    slice is intentional.
+8. Consolidate the two colour systems
+9. Custom 404, per-page sharing images, analytics
+10. 8 entries are flagged highlighted but only 4 render — decide if that's intended
+11. **Commit author is "Your Name <you@example.com>" on past commits** and the
+    current identity uses a work email. Worth setting properly on a public
+    personal repo
 
 ---
 
-## 8. Open decisions
+## 9. Open decisions
 
 | Question | Status |
 |---|---|
+| Which 2–3 case studies get full depth | Proposed, **not confirmed** |
+| How to fill the empty image slots | GIF, mockup, or flat — **undecided** |
+| Humanize skill | Link pending |
+| Accuracy number for the AI Chatbot | Being chased internally |
 | Domain name | Undecided |
-| Dark mode | Wired underneath, no toggle exposed. Leave hidden unless asked |
-| "Now" / "Currently" section | Considered, borrowed from the reference sites, not built |
-| Case study depth | Do more entries deserve the rich treatment, or is one enough? |
+| Dark mode | Wired underneath, no toggle. Leave hidden unless asked |
 
 ---
 
-## 9. Picking the work back up
+## 10. Next steps
 
-```bash
-cd ~/portfolio
-npm run dev          # http://localhost:3000
-npm run build
-git log --oneline -5
-```
-
-- `/` — homepage
-- `/work/<slug>` — detail pages, 19 of them
-
-To look back at the multi-layout exploration:
-`git checkout archive/multi-layout`, then `git checkout main` to return.
+1. **Rewrite the AI Chatbot case study** — cut to roughly half, strip the draft
+   notes, open with the funnel and handoff numbers, move it into a content file
+2. Decide how images get treated, then capture what's needed
+3. Rework the other two chosen case studies to match
+4. Build the renderer so content files drive the detail pages
+5. Return to the visual design once content is settled
 
 ---
 
-## 10. Technical notes worth keeping
+## 11. Technical notes
 
 - **Next.js 16** — significantly changed from earlier versions. Check the
-  bundled docs before writing new code.
-- **Tailwind v4** inlines theme values at parse time, which is why the main
-  layout's fonts are forced through an explicit scoped selector rather than a
-  variable override. Don't unpick that without understanding it.
-- **Detail pages are pre-rendered** from the entry list at build time, so a new
-  entry with a slug automatically gets a page.
-- **Git accounts:** push as `mafsar08`. The other account on this machine
-  (`mohammedafsar08`) has no write access here.
-
----
-
-## 11. Codex onboarding — 2026-09-07
-
-- Added portfolio-specific Codex guidance in `AGENTS.md`, connected to the full
-  brief in `CLAUDE.md`, this living record, and the case-study sources/process.
-  Preserved the existing Next.js instructions and personal response preferences.
-- Saved a project-scoped Codex memory update note at the user's explicit request.
-  This document remains the source of current project state.
-- Reviewed the written content and implementation. No site code or public-facing
-  copy changed during onboarding; no commit, push, deployment, or visual QA ran.
-
-**Current implementation corrections to earlier sections:**
-
-- Four featured homepage entries: Kissflow Intelligence, AI Control Center,
-  Document Templates with AI Generation, and AI Solution Analyzer. Dataviews is
-  not highlighted. Eight entries remain highlighted overall; only four display.
-- There are three achievement entries, not four.
-- There are four detailed written case studies in `docs/case-studies.md`: AI
-  Control Center, AI Solution Analyzer, Document Templates, and Service Accounts
-  & Impersonation. Their detail pages still use the older short feature copy.
-  AI Chatbot is the only rich rendered case study, with draft annotations and
-  image placeholders still present.
-
-**Evidence and ownership to resolve before substantive content work:**
-
-- Document Templates: older source/site copy claims the visual editor was built
-  as part of this work; the newer study explicitly limits ownership to the AI
-  generation path and calls the manual editor pre-existing. Asked the user which
-  scope is correct; confirmation is pending. Do not silently combine the claims.
-- The four detailed written studies do not record explicit user sign-off or
-  sources for measured outcomes. Their status is unverified, not rejected.
-  Confirm missing rationale, contribution, quotes, and impact before reuse.
-- Chatbot's 80–95% accuracy is a target, not a measured result. Automatic fixing
-  in Solution Analyzer is future direction, not shipped functionality.
-- Existing testimonial placeholders and unsupported research/impact statements
-  must not be promoted to evidence. Profile/work imagery and the missing resume
-  remain launch gaps; deployment status was not independently checked.
-
-Next work remains for the user to choose. Preserve the established visual
-direction and clarify the requested scope before building or rewriting.
+  bundled docs before writing new code
+- **Tailwind v4** inlines theme values at parse time, which is why the layout's
+  fonts go through an explicit scoped selector. Don't unpick that casually
+- **Detail pages are pre-rendered** from the entry list, so a new entry with a
+  slug automatically gets a page
+- **Git:** push as `mafsar08`. The other account on this machine
+  (`mohammedafsar08`) has no write access
