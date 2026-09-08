@@ -170,5 +170,23 @@ prose stays reviewable outside of code.
   auto-deleted after 30 days — **this doc is the memory, not the transcript.**
 - **Commits** are written as my own work, present-tense, plain description of
   what changed.
-- **Git accounts:** pushes use `mafsar08`. The other account on this machine
-  (`mohammedafsar08`) lacks write access to this repo.
+- **Git identity — always check before committing.** This repo is public and
+  commits must read as Mohammed Afsar's own work, attributed to the account the
+  repo lives under.
+
+  | Setting | Value |
+  |---|---|
+  | Push account | `mafsar08` (`gh auth switch --user mafsar08`) |
+  | Commit name | `Mohammed Afsar` |
+  | Commit email | `276209431+mafsar08@users.noreply.github.com` |
+
+  The noreply address is deliberate: it attributes commits to `mafsar08` on
+  GitHub without publishing a personal or work email on a public repo.
+  These are set locally on this repo, so they apply automatically — but
+  **verify the author line after committing**, because a global config can
+  override expectations. The other account on this machine
+  (`mohammedafsar08`) lacks write access here, and its work email must never
+  end up on a commit.
+
+  The five original commits still carry git's default placeholder identity.
+  Fixing them means rewriting the whole history — left alone for now.

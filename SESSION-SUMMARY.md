@@ -204,9 +204,9 @@ consolidating before launch.
 8. Consolidate the two colour systems
 9. Custom 404, per-page sharing images, analytics
 10. 8 entries are flagged highlighted but only 4 render — decide if that's intended
-11. **Commit author is "Your Name <you@example.com>" on past commits** and the
-    current identity uses a work email. Worth setting properly on a public
-    personal repo
+11. The five original commits still carry git's default placeholder identity
+    ("Your Name"). Fixing them means rewriting the whole history — left alone.
+    Commits from 2026-09-08 onward are correctly attributed
 
 ---
 
