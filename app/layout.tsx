@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Lora, Inter } from "next/font/google";
-import ThemeProvider from "@/components/ThemeProvider";
+import ThemeProvider from "@/components/ui/ThemeProvider";
 import "./globals.css";
 
 const lora = Lora({

@@ -27,7 +27,7 @@ function useChennaiTime() {
   return time;
 }
 
-export default function GlimmLayout() {
+export default function HomePage() {
   const [showAllWork, setShowAllWork] = useState(false);
   const [hoverEntry, setHoverEntry] = useState<PreviewData | null>(null);
   const [hoverTop, setHoverTop] = useState(0);
@@ -40,7 +40,7 @@ export default function GlimmLayout() {
   );
 
   return (
-    <div className="glimm-layout min-h-screen bg-[#FAFAF8] text-[#1A1A1A]">
+    <div className="site min-h-screen bg-[#FAFAF8] text-[#1A1A1A]">
       <WorkPreview entry={hoverEntry} top={hoverTop} />
       <main className="max-w-[640px] mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-20">
         {/* ── Header: portrait + name + tagline ── */}
@@ -95,7 +95,7 @@ export default function GlimmLayout() {
         </header>
 
         {/* ── Work ── */}
-        <section id="glimm-work" className="mb-20 scroll-mt-10">
+        <section id="work" className="mb-20 scroll-mt-10">
           <SectionHeader label="Work" />
 
           <ul className="">
@@ -143,7 +143,7 @@ export default function GlimmLayout() {
         </section>
 
         {/* ── Experience ── */}
-        <section id="glimm-experience" className="mb-20 scroll-mt-10">
+        <section id="experience" className="mb-20 scroll-mt-10">
           <SectionHeader label="Experience" />
 
           <ul className="space-y-7">
@@ -183,7 +183,7 @@ export default function GlimmLayout() {
         </section>
 
         {/* ── Achievements ── */}
-        <section id="glimm-achievements" className="mb-20 scroll-mt-10">
+        <section id="achievements" className="mb-20 scroll-mt-10">
           <SectionHeader label="Achievements" />
 
           <ul className="">
@@ -224,7 +224,7 @@ export default function GlimmLayout() {
         </section>
 
         {/* ── About ── */}
-        <section id="glimm-about" className="mb-20 scroll-mt-10">
+        <section id="about" className="mb-20 scroll-mt-10">
           <SectionHeader label="About" />
 
           <div className="space-y-4 text-[15.5px] leading-[1.72] text-[#2A2826]">
@@ -241,7 +241,7 @@ export default function GlimmLayout() {
         </section>
 
         {/* ── Contact ── */}
-        <section id="glimm-contact" className="mb-12 scroll-mt-10">
+        <section id="contact" className="mb-12 scroll-mt-10">
           <SectionHeader label="Contact" />
 
           <p className="text-[15.5px] leading-[1.72] text-[#2A2826] mb-6">

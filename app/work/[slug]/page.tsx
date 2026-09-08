@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { trackRecordData } from "@/data/track-record";
 import WorkPageLayout from "@/components/work/WorkPageLayout";
 import FeaturePage from "@/components/work/FeaturePage";
-import AIChatbotCaseStudy from "@/components/work/studies/AIChatbotCaseStudy";
+import AIChatbotCaseStudy from "@/components/case-study/studies/AIChatbotCaseStudy";
 
 // Map slugs to custom case study components (rich Template A).
 // Entries with a slug not in this map fall through to Template B (FeaturePage).

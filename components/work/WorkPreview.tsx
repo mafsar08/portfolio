@@ -99,7 +99,7 @@ export default function WorkPreview({
                   {active && (
                     <span
                       key={`${render.title}-${i}`}
-                      className="glimm-progress-fill absolute inset-0 bg-white"
+                      className="progress-fill absolute inset-0 bg-white"
                     />
                   )}
                 </span>

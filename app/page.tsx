@@ -1,5 +1,5 @@
-import GlimmLayout from "@/components/layouts/GlimmLayout";
+import HomePage from "@/components/home/HomePage";
 
 export default function Home() {
-  return <GlimmLayout />;
+  return <HomePage />;
 }

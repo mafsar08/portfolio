@@ -53,7 +53,7 @@ Navigate to the feature in the browser. For each feature, capture:
 - Detail views (expanded items, secondary panels)
 
 Save screenshots to: `screenshots/{feature-slug}/` (inside the project root for Playwright access).
-Copy to: `/Users/afsar/portfolio/screenshots/{feature-slug}/` for portfolio use.
+Copy to: `~/my-projects/portfolio/assets/screenshots/{feature-slug}/` for portfolio use.
 
 Naming convention: `{##}-{description}.png` (e.g., `01-full-page.png`, `04-disable-confirmation-modal.png`).
 
@@ -135,5 +135,5 @@ Before presenting the case study to the user, run a self-review pass.
 | Case studies (output) | `/Users/afsar/portfolio/docs/case-studies.md` |
 | Process reference | `/Users/afsar/portfolio/docs/case-study-process.md` |
 | Screenshots (working) | `/Users/afsar/Downloads/kf-xg-frontend/screenshots/{feature-slug}/` |
-| Screenshots (portfolio) | `/Users/afsar/portfolio/screenshots/{feature-slug}/` |
+| Screenshots (portfolio) | `~/my-projects/portfolio/assets/screenshots/{feature-slug}/` |
 | Codebase | `/Users/afsar/Downloads/kf-xg-frontend/` |
